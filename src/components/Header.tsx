@@ -20,6 +20,14 @@ const HeaderBar = styled.header`
   align-items: center;
   height: 56px;
   animation: ${fadeIn} 0.7s cubic-bezier(.4,0,.2,1);
+  padding: 0 0;
+  @media (max-width: 900px) {
+    height: 46px;
+  }
+  @media (max-width: 600px) {
+    height: 38px;
+    padding: 0 0;
+  }
 `;
 
 const Nav = styled.nav`
@@ -27,9 +35,15 @@ const Nav = styled.nav`
   max-width: 1280px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 0 32px 0 0;
+  justify-content: center;
+  padding: 0;
   position: relative;
+  @media (max-width: 900px) {
+    padding: 0 0;
+  }
+  @media (max-width: 600px) {
+    padding: 0 0;
+  }
 `;
 
 const NavLinks = styled.div`
@@ -71,71 +85,49 @@ const RightBlock = styled.div`
   gap: 18px;
 `;
 
-const LangToggleWrapper = styled.div`
+const LangSimpleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  width: 72px;
-  height: 26px;
-  background: rgba(10, 37, 64, 0.38);
-  border-radius: 13px;
-  user-select: none;
+  gap: 4px;
+  height: 28px;
+  margin: 0 auto;
   @media (max-width: 900px) {
-    width: 60px;
+    gap: 3px;
     height: 22px;
   }
   @media (max-width: 600px) {
-    width: 48px;
+    gap: 2px;
     height: 18px;
   }
 `;
 
-const LangSlider = styled.div<{active: 'ru' | 'en'}>`
-  position: absolute;
-  top: 2px;
-  left: ${({active}) => active === 'ru' ? '3px' : '37px'};
-  width: 32px;
-  height: 22px;
-  background: linear-gradient(90deg, rgba(0,150,255,0.18) 0%, rgba(106,103,206,0.13) 100%);
-  border-radius: 11px;
-  transition: left 0.22s cubic-bezier(.4,0,.2,1);
-  z-index: 1;
-  @media (max-width: 900px) {
-    left: ${({active}) => active === 'ru' ? '2px' : '30px'};
-    width: 24px;
-    height: 16px;
-    border-radius: 8px;
-  }
-  @media (max-width: 600px) {
-    left: ${({active}) => active === 'ru' ? '1px' : '19px'};
-    width: 14px;
-    height: 10px;
-    border-radius: 5px;
-  }
-`;
-
-const LangToggleButton = styled.button<{active?: boolean}>`
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  height: 100%;
-  background: none;
+const LangSimpleButton = styled.button<{active?: boolean}>`
+  padding: 2px 10px;
+  border-radius: 7px;
   border: none;
-  color: ${({active}) => active ? '#eaf6ff' : 'rgba(234,246,255,0.38)'};
+  background: ${({active}) => active ? 'linear-gradient(90deg, #0096ff 0%, #6a67ce 100%)' : 'rgba(10, 37, 64, 0.10)'};
+  color: ${({active}) => active ? '#fff' : 'rgba(234,246,255,0.38)'};
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   cursor: pointer;
-  border-radius: 11px;
-  transition: color 0.18s;
+  transition: background 0.18s, color 0.18s;
   outline: none;
+  box-shadow: ${({active}) => active ? '0 0 4px 0 rgba(0,150,255,0.10)' : 'none'};
+  display: flex;
+  align-items: center;
+  height: 24px;
   @media (max-width: 900px) {
-    font-size: 0.82rem;
-    border-radius: 8px;
+    padding: 1px 7px;
+    font-size: 0.74rem;
+    border-radius: 6px;
+    height: 18px;
   }
   @media (max-width: 600px) {
-    font-size: 0.7rem;
+    padding: 0 5px;
+    font-size: 0.68rem;
     border-radius: 5px;
+    height: 14px;
   }
 `;
 
@@ -152,19 +144,18 @@ const Header: React.FC<HeaderProps> = ({ language = 'en', onLanguageChange, mess
   return (
     <HeaderBar>
       <Nav style={{flex: '1 1 0', justifyContent: 'center'}}>
-        <LangToggleWrapper>
-          <LangSlider active={language} />
-          <LangToggleButton
+        <LangSimpleWrapper>
+          <LangSimpleButton
             active={language === 'ru'}
             onClick={() => onLanguageChange && onLanguageChange('ru')}
             aria-label="Русский"
-          >RU</LangToggleButton>
-          <LangToggleButton
+          >RU</LangSimpleButton>
+          <LangSimpleButton
             active={language === 'en'}
             onClick={() => onLanguageChange && onLanguageChange('en')}
             aria-label="English"
-          >EN</LangToggleButton>
-        </LangToggleWrapper>
+          >EN</LangSimpleButton>
+        </LangSimpleWrapper>
       </Nav>
     </HeaderBar>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import LandingPage from './components/LandingPage';
+import AboutPage from './pages/AboutPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -8,6 +10,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <LandingPage />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 ); 

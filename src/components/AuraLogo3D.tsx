@@ -48,7 +48,7 @@ const AuraContainer = styled.div`
   }
   @media (max-width: 600px) {
     width: 98vw;
-    height: 340px;
+    height: 520px;
     min-width: 0;
     max-width: 100vw;
   }
@@ -96,8 +96,8 @@ const LogoMain = styled.div`
     font-size: 70px;
   }
   @media (max-width: 600px) {
-    font-size: 38px;
-    letter-spacing: 2px;
+    font-size: 74px;
+    letter-spacing: 4px;
   }
 `;
 

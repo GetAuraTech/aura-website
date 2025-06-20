@@ -3,7 +3,7 @@ import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import AuraLogo3D from './AuraLogo3D';
 import Footer from './Footer';
 import { locales, LocaleKey } from '../locales';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -146,7 +146,7 @@ const NavLinks = styled.nav`
   }
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled(Link)<{ $active?: boolean }>`
   color: #f8f9fa;
   text-decoration: none;
   font-size: 1rem;
@@ -172,14 +172,21 @@ const NavLink = styled(Link)`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: ${({ $active }) => ($active ? '100%' : '0')};
     height: 2px;
     background: linear-gradient(to right, #00c9b1, #6a67ce);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
-  &:hover::after {
-    width: 100%;
-  }
+  ${({ $active }) =>
+    $active &&
+    `
+      color: #00c9b1;
+      opacity: 1;
+      font-weight: 700;
+      &::after {
+        width: 100%;
+      }
+    `}
 `;
 
 const NavA = styled.a`
@@ -328,13 +335,18 @@ const LANGS = [
   { code: 'ru', label: 'RU', flag: 'https://flagcdn.com/w40/ru.png' },
 ];
 
-const LandingPage: React.FC = () => {
-  const [language, setLanguage] = useState<LocaleKey>('en');
+interface LandingPageProps {
+  language: LocaleKey;
+  onLanguageChange: (lang: LocaleKey) => void;
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange }) => {
   const [langMenu, setLangMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const messages = locales[language];
   const currentLang = LANGS.find(l => l.code === language) || LANGS[0];
   const langSwitcherRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -368,8 +380,9 @@ const LandingPage: React.FC = () => {
       <HeaderBar id="header" className={scrolled ? 'scrolled' : ''}>
         <HeaderLeft>
           <NavLinks style={{gap: '2.2rem'}}>
-            <NavLink to="/about">{language === 'ru' ? 'О проекте' : 'About'}</NavLink>
-            <NavA href="mailto:hello@getaura.tech">{language === 'ru' ? 'Контакт' : 'Contact'}</NavA>
+            <NavLink to="/" $active={location.pathname === '/'}>{language === 'ru' ? 'Главная' : 'Main'}</NavLink>
+            <NavLink to="/about" $active={location.pathname === '/about'}>{language === 'ru' ? 'О проекте' : 'About'}</NavLink>
+            <NavA href="mailto:hello@getaura.tech">{messages.contacts}</NavA>
           </NavLinks>
         </HeaderLeft>
         <HeaderCenter />
@@ -381,7 +394,7 @@ const LandingPage: React.FC = () => {
             </LangBtn>
             <LangOptions style={{ opacity: langMenu ? 1 : 0, visibility: langMenu ? 'visible' : 'hidden', pointerEvents: langMenu ? 'auto' : 'none' }}>
               {LANGS.filter(l => l.code !== language).map(l => (
-                <LangOption key={l.code} onClick={() => { setLanguage(l.code as LocaleKey); setLangMenu(false); }}>
+                <LangOption key={l.code} onClick={() => { onLanguageChange(l.code as LocaleKey); setLangMenu(false); }}>
                   <LangFlag src={l.flag} alt={l.label} />
                   {l.label}
                 </LangOption>

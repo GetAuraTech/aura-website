@@ -3,6 +3,7 @@ import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import Footer from '../components/Footer';
 import { locales, LocaleKey } from '../locales';
 import { Link } from 'react-router-dom';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -157,6 +158,38 @@ const BlockText = styled.div`
   }
   @media (max-width: 600px) {
     font-size: 0.7rem;
+  }
+`;
+
+const BlockListStyledUl = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #eaf6ff;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    @media (max-width: 900px) {
+      font-size: 0.88rem;
+    }
+    @media (max-width: 600px) {
+      font-size: 0.7rem;
+    }
+    svg {
+      color: #00c9b1;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 1.1em;
+      filter: drop-shadow(0 0 4px #00c9b1aa);
+    }
   }
 `;
 
@@ -486,8 +519,12 @@ const GetAuraButton = styled.a`
   }
 `;
 
-const AboutPage: React.FC = () => {
-  const [language, setLanguage] = useState<LocaleKey>('en');
+interface AboutPageProps {
+  language: LocaleKey;
+  onLanguageChange: (lang: LocaleKey) => void;
+}
+
+const AboutPage: React.FC<AboutPageProps> = ({ language, onLanguageChange }) => {
   const [langMenu, setLangMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const messages = locales[language];
@@ -527,7 +564,7 @@ const AboutPage: React.FC = () => {
           <NavLinks style={{gap: '2.2rem'}}>
             <NavLink to="/">{language === 'ru' ? 'Главная' : 'Main'}</NavLink>
             <NavLink to="/about" active>{language === 'ru' ? 'О проекте' : 'About'}</NavLink>
-            <NavA href="mailto:hello@getaura.tech">{language === 'ru' ? 'Контакт' : 'Contact'}</NavA>
+            <NavA href="mailto:hello@getaura.tech">{messages.contacts}</NavA>
           </NavLinks>
         </HeaderLeft>
         <HeaderCenter />
@@ -539,7 +576,7 @@ const AboutPage: React.FC = () => {
             </LangBtn>
             <LangOptions style={{ opacity: langMenu ? 1 : 0, visibility: langMenu ? 'visible' : 'hidden', pointerEvents: langMenu ? 'auto' : 'none' }}>
               {LANGS.filter(l => l.code !== language).map(l => (
-                <LangOption key={l.code} onClick={() => { setLanguage(l.code as LocaleKey); setLangMenu(false); }}>
+                <LangOption key={l.code} onClick={() => { onLanguageChange(l.code as LocaleKey); setLangMenu(false); }}>
                   <LangFlag src={l.flag} alt={l.label} />
                   {l.label}
                 </LangOption>

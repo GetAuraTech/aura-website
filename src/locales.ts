@@ -14,6 +14,10 @@ export const locales = {
         text: 'AURA is your partner in intelligent business process automation. We don\'t just deliver technology — we analyze, design, and implement tailored solutions that free your teams from routine, making your business smarter, faster, and more efficient.'
       },
       {
+        title: 'Your Benefits in Numbers',
+        text: 'You get: up to 60% savings on manual tasks, 2-4x faster operations, up to 99.9% accuracy, and up to 30% of your employees\' time freed for strategic and development tasks.'
+      },
+      {
         title: 'Why do we do it?',
         text: 'AURA was founded on the belief that modern business can and should work differently. We saw the huge potential of automation and AI being left untapped due to implementation complexity or lack of understanding.'
       },

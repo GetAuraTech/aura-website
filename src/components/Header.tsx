@@ -53,6 +53,23 @@ const LeftBlock = styled.div`
   }
 `;
 
+const CenterLogo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.98;
+  @media (max-width: 900px) {
+    transform: scale(0.8);
+  }
+  @media (max-width: 600px) {
+    transform: scale(0.6);
+  }
+`;
+
 const HeaderLink = styled(Link)`
   color: #eaf6ff;
   font-size: 1.08rem;
@@ -110,23 +127,6 @@ const HeaderA = styled.a`
     font-size: 0.8rem;
     padding: 2px 6px;
     border-radius: 4px;
-  }
-`;
-
-const CenterLogo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
-  min-width: 0;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.98;
-  @media (max-width: 900px) {
-    transform: scale(0.8);
-  }
-  @media (max-width: 600px) {
-    transform: scale(0.6);
   }
 `;
 

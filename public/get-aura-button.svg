@@ -1,0 +1,15 @@
+<svg width="180" height="44" viewBox="0 0 180 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="auraBtnGradient" x1="0" y1="0" x2="180" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0096ff"/>
+      <stop offset="1" stop-color="#6a67ce"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="176" height="40" rx="20" fill="url(#auraBtnGradient)" />
+  <rect x="2" y="2" width="176" height="40" rx="20" stroke="rgba(0,150,255,0.18)" stroke-width="2"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700"
+        fill="#fff" letter-spacing="0.08em">
+    GET AURA
+  </text>
+</svg> 

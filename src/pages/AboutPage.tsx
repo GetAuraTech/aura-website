@@ -29,7 +29,7 @@ const PageContainer = styled.div`
     padding-bottom: 40px;
   }
   @media (max-width: 600px) {
-    padding-top: 18px;
+    padding-top: 28px;
     padding-bottom: 28px;
     min-height: 100dvh;
   }
@@ -50,13 +50,13 @@ const GradientTitle = styled.h1`
   text-fill-color: transparent;
   text-shadow: 0 0 18px rgba(106, 103, 206, 0.22);
   @media (max-width: 900px) {
-    font-size: 2.2rem;
-    margin-bottom: 8px;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
     margin-top: 0;
   }
   @media (max-width: 600px) {
-    font-size: 1.3rem;
-    margin-bottom: 6px;
+    font-size: 2.6rem;
+    margin-bottom: 10px;
     margin-top: 0;
   }
 `;
@@ -110,8 +110,8 @@ const BlockList = styled.div`
     max-width: 96vw;
   }
   @media (max-width: 600px) {
-    gap: 16px;
-    max-width: 100vw;
+    gap: 18px;
+    max-width: 96vw;
   }
 `;
 
@@ -128,8 +128,8 @@ const Block = styled.div`
     border-radius: 20px;
   }
   @media (max-width: 600px) {
-    padding: 12px 4vw;
-    border-radius: 14px;
+    padding: 20px 5vw;
+    border-radius: 18px;
     box-shadow: 0 2px 12px 0 rgba(0,150,255,0.10), 0 1px 4px 0 rgba(0,0,0,0.08);
   }
 `;
@@ -144,8 +144,8 @@ const BlockTitle = styled.h2`
     margin-bottom: 4px;
   }
   @media (max-width: 600px) {
-    font-size: 0.8rem;
-    margin-bottom: 2px;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
   }
 `;
 
@@ -154,10 +154,11 @@ const BlockText = styled.div`
   font-size: 1rem;
   font-weight: 400;
   @media (max-width: 900px) {
-    font-size: 0.88rem;
+    font-size: 0.98rem;
   }
   @media (max-width: 600px) {
-    font-size: 0.7rem;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 `;
 
@@ -178,10 +179,10 @@ const BlockListStyledUl = styled.ul`
     font-weight: 400;
     line-height: 1.5;
     @media (max-width: 900px) {
-      font-size: 0.88rem;
+      font-size: 0.98rem;
     }
     @media (max-width: 600px) {
-      font-size: 0.7rem;
+      font-size: 1rem;
     }
     svg {
       color: #00c9b1;

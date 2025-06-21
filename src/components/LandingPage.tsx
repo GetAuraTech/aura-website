@@ -177,6 +177,9 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
     background: linear-gradient(to right, #00c9b1, #6a67ce);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
+  &:hover::after {
+    width: 100%;
+  }
   ${({ $active }) =>
     $active &&
     `

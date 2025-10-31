@@ -635,7 +635,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           <SectionSubtitle>{messages.featuresSubtitle}</SectionSubtitle>
           <FeaturesGrid>
             {messages.features.map((feature, index) => (
-              <ElectricBorder key={index} color="#4CC2E9" speed={0.8} chaos={0.6} thickness={2} style={{ borderRadius: '20px' }}>
+              <ElectricBorder key={index} color="#4CC2E9" speed={0.3} chaos={0.15} thickness={1} style={{ borderRadius: '20px' }}>
                 <FeatureCard>
                   <FeatureTitle>{feature.title}</FeatureTitle>
                   <FeatureDescription>{feature.description}</FeatureDescription>
@@ -651,7 +651,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           <SectionSubtitle>{messages.benefitsSubtitle}</SectionSubtitle>
           <BenefitsGrid>
             {messages.benefits.map((benefit, index) => (
-              <ElectricBorder key={index} color="#9C43FE" speed={0.7} chaos={0.5} thickness={2} style={{ borderRadius: '20px' }}>
+              <ElectricBorder key={index} color="#9C43FE" speed={0.3} chaos={0.15} thickness={1} style={{ borderRadius: '20px' }}>
                 <BenefitCard>
                   <BenefitValue>{benefit.value}</BenefitValue>
                   <BenefitLabel>{benefit.label}</BenefitLabel>
@@ -668,7 +668,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           <SectionSubtitle>{messages.howItWorksSubtitle}</SectionSubtitle>
           <StepsContainer>
             {messages.steps.map((step, index) => (
-              <ElectricBorder key={index} color="#4CC2E9" speed={0.6} chaos={0.4} thickness={2} style={{ borderRadius: '20px' }}>
+              <ElectricBorder key={index} color="#4CC2E9" speed={0.3} chaos={0.15} thickness={1} style={{ borderRadius: '20px' }}>
                 <StepCard>
                   <StepNumber>{step.number}</StepNumber>
                   <StepTitle>{step.title}</StepTitle>

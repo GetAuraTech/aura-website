@@ -4,41 +4,77 @@ import { locales, LocaleKey } from '../locales';
 
 const FooterBar = styled.footer`
   width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 10;
-  background: none;
-  box-shadow: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  pointer-events: none;
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 60px 40px;
+  margin-top: 0;
   @media (max-width: 900px) {
-    height: 38px;
+    padding: 50px 30px;
   }
   @media (max-width: 600px) {
-    height: 28px;
+    padding: 40px 20px;
   }
 `;
 
-const FooterText = styled.div`
-  width: 100%;
-  text-align: center;
-  color: rgba(255,255,255,0.45);
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  font-weight: 400;
-  user-select: none;
-  pointer-events: auto;
-  @media (max-width: 900px) {
-    font-size: 0.74rem;
-    letter-spacing: 0.06em;
+const FooterContent = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
+
+const FooterTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+const FooterLinks = styled.div`
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 15px;
+  }
+`;
+
+const FooterLink = styled.a`
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #00c9b1;
   }
   @media (max-width: 600px) {
-    font-size: 0.62rem;
-    letter-spacing: 0.04em;
+    font-size: 0.9rem;
+  }
+`;
+
+const FooterBottom = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+`;
+
+const FooterText = styled.div`
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  text-align: center;
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -46,46 +82,30 @@ const LangSimpleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 4px;
-  height: 28px;
-  margin-left: auto;
-  pointer-events: auto;
-  @media (max-width: 900px) {
-    gap: 3px;
-    height: 22px;
-  }
-  @media (max-width: 600px) {
-    gap: 2px;
-    height: 18px;
+  gap: 8px;
+  @media (max-width: 768px) {
+    justify-content: center;
   }
 `;
 
 const LangSimpleButton = styled.button<{active?: boolean}>`
-  padding: 2px 10px;
-  border-radius: 7px;
+  padding: 8px 16px;
+  border-radius: 8px;
   border: none;
-  background: ${({active}) => active ? 'linear-gradient(90deg, #0096ff 0%, #6a67ce 100%)' : 'rgba(10, 37, 64, 0.10)'};
-  color: ${({active}) => active ? '#fff' : 'rgba(234,246,255,0.38)'};
+  background: ${({active}) => active ? 'linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%)' : 'rgba(255, 255, 255, 0.05)'};
+  color: ${({active}) => active ? '#fff' : 'rgba(255, 255, 255, 0.6)'};
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
+  transition: all 0.3s ease;
   outline: none;
-  box-shadow: ${({active}) => active ? '0 0 4px 0 rgba(0,150,255,0.10)' : 'none'};
-  display: flex;
-  align-items: center;
-  height: 24px;
-  @media (max-width: 900px) {
-    padding: 1px 7px;
-    font-size: 0.74rem;
-    border-radius: 6px;
-    height: 18px;
+  &:hover {
+    background: ${({active}) => active ? 'linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%)' : 'rgba(255, 255, 255, 0.1)'};
+    color: #fff;
   }
   @media (max-width: 600px) {
-    padding: 0 5px;
-    font-size: 0.68rem;
-    border-radius: 5px;
-    height: 14px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
   }
 `;
 
@@ -98,21 +118,35 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ message, showLangToggle, language = 'en', onLanguageChange }) => (
   <FooterBar>
-    <FooterText>{message}</FooterText>
-    {showLangToggle && (
-      <LangSimpleWrapper>
-        <LangSimpleButton
-          active={language === 'ru'}
-          onClick={() => onLanguageChange && onLanguageChange('ru')}
-          aria-label="Русский"
-        >RU</LangSimpleButton>
-        <LangSimpleButton
-          active={language === 'en'}
-          onClick={() => onLanguageChange && onLanguageChange('en')}
-          aria-label="English"
-        >EN</LangSimpleButton>
-      </LangSimpleWrapper>
-    )}
+    <FooterContent>
+      <FooterTop>
+        <FooterLinks>
+          <FooterLink href="https://getaura.tech" target="_blank" rel="noopener noreferrer">
+            GetAura.tech
+          </FooterLink>
+          <FooterLink href="mailto:hello@getaura.tech">
+            hello@getaura.tech
+          </FooterLink>
+        </FooterLinks>
+        {showLangToggle && (
+          <LangSimpleWrapper>
+            <LangSimpleButton
+              active={language === 'ru'}
+              onClick={() => onLanguageChange && onLanguageChange('ru')}
+              aria-label="Русский"
+            >RU</LangSimpleButton>
+            <LangSimpleButton
+              active={language === 'en'}
+              onClick={() => onLanguageChange && onLanguageChange('en')}
+              aria-label="English"
+            >EN</LangSimpleButton>
+          </LangSimpleWrapper>
+        )}
+      </FooterTop>
+      <FooterBottom>
+        <FooterText>{message}</FooterText>
+      </FooterBottom>
+    </FooterContent>
   </FooterBar>
 );
 

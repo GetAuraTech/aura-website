@@ -529,7 +529,6 @@ const CTASection = styled(ContentSection)`
   background: linear-gradient(135deg, rgba(0, 201, 177, 0.1) 0%, rgba(106, 103, 206, 0.1) 100%);
   border-radius: 30px;
   border: 1px solid rgba(0, 201, 177, 0.2);
-  margin-bottom: 100px;
 `;
 
 const CTAButton = styled.a`
@@ -687,7 +686,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           </CTAButton>
         </CTASection>
 
-        <Footer message={messages.footer} />
+        <Footer
+          message={messages.footer}
+          showLangToggle={true}
+          language={language}
+          onLanguageChange={onLanguageChange}
+        />
       </MainContent>
     </>
   );

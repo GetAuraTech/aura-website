@@ -7,6 +7,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import Orb from './Orb';
 import PillNav from './PillNav';
+import ElectricBorder from './ElectricBorder';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -383,16 +384,13 @@ const FeaturesGrid = styled.div`
 
 const FeatureCard = styled.div`
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 40px 30px;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   backdrop-filter: blur(10px);
   &:hover {
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(76, 194, 233, 0.5);
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(76, 194, 233, 0.2);
   }
   @media (max-width: 600px) {
     padding: 30px 20px;
@@ -434,12 +432,10 @@ const BenefitCard = styled.div`
   padding: 30px;
   background: rgba(156, 67, 254, 0.1);
   border-radius: 20px;
-  border: 1px solid rgba(156, 67, 254, 0.3);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   &:hover {
     transform: scale(1.05);
     background: rgba(156, 67, 254, 0.15);
-    border-color: rgba(156, 67, 254, 0.5);
   }
 `;
 
@@ -491,12 +487,10 @@ const StepCard = styled.div`
   position: relative;
   padding: 30px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   &:hover {
     background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(76, 194, 233, 0.4);
   }
 `;
 
@@ -641,10 +635,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           <SectionSubtitle>{messages.featuresSubtitle}</SectionSubtitle>
           <FeaturesGrid>
             {messages.features.map((feature, index) => (
-              <FeatureCard key={index}>
-                <FeatureTitle>{feature.title}</FeatureTitle>
-                <FeatureDescription>{feature.description}</FeatureDescription>
-              </FeatureCard>
+              <ElectricBorder key={index} color="#4CC2E9" speed={0.8} chaos={0.6} thickness={2} style={{ borderRadius: '20px' }}>
+                <FeatureCard>
+                  <FeatureTitle>{feature.title}</FeatureTitle>
+                  <FeatureDescription>{feature.description}</FeatureDescription>
+                </FeatureCard>
+              </ElectricBorder>
             ))}
           </FeaturesGrid>
         </ContentSection>
@@ -655,11 +651,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           <SectionSubtitle>{messages.benefitsSubtitle}</SectionSubtitle>
           <BenefitsGrid>
             {messages.benefits.map((benefit, index) => (
-              <BenefitCard key={index}>
-                <BenefitValue>{benefit.value}</BenefitValue>
-                <BenefitLabel>{benefit.label}</BenefitLabel>
-                <BenefitDescription>{benefit.description}</BenefitDescription>
-              </BenefitCard>
+              <ElectricBorder key={index} color="#9C43FE" speed={0.7} chaos={0.5} thickness={2} style={{ borderRadius: '20px' }}>
+                <BenefitCard>
+                  <BenefitValue>{benefit.value}</BenefitValue>
+                  <BenefitLabel>{benefit.label}</BenefitLabel>
+                  <BenefitDescription>{benefit.description}</BenefitDescription>
+                </BenefitCard>
+              </ElectricBorder>
             ))}
           </BenefitsGrid>
         </ContentSection>
@@ -670,11 +668,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           <SectionSubtitle>{messages.howItWorksSubtitle}</SectionSubtitle>
           <StepsContainer>
             {messages.steps.map((step, index) => (
-              <StepCard key={index}>
-                <StepNumber>{step.number}</StepNumber>
-                <StepTitle>{step.title}</StepTitle>
-                <StepDescription>{step.description}</StepDescription>
-              </StepCard>
+              <ElectricBorder key={index} color="#4CC2E9" speed={0.6} chaos={0.4} thickness={2} style={{ borderRadius: '20px' }}>
+                <StepCard>
+                  <StepNumber>{step.number}</StepNumber>
+                  <StepTitle>{step.title}</StepTitle>
+                  <StepDescription>{step.description}</StepDescription>
+                </StepCard>
+              </ElectricBorder>
             ))}
           </StepsContainer>
         </ContentSection>

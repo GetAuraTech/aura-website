@@ -7,7 +7,6 @@ import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import Orb from './Orb';
 import PillNav from './PillNav';
-import BlurText from './BlurText';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -337,42 +336,24 @@ const ContentSection = styled.section`
   }
 `;
 
-const SectionTitleWrapper = styled.div`
+const SectionTitle = styled.h2`
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
   margin-bottom: 1rem;
-  display: flex;
-  justify-content: center;
-
-  p {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    background: linear-gradient(135deg, #4CC2E9 0%, #9C43FE 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin: 0;
-
-    @media (max-width: 900px) {
-      font-size: 2.5rem;
-    }
-    @media (max-width: 600px) {
-      font-size: 2rem;
-    }
+  background: linear-gradient(135deg, #4CC2E9 0%, #9C43FE 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  @media (max-width: 900px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 2rem;
   }
 `;
-
-const SectionTitle = ({ children }: { children: string }) => (
-  <SectionTitleWrapper>
-    <BlurText
-      text={children}
-      delay={50}
-      animateBy="words"
-      direction="top"
-    />
-  </SectionTitleWrapper>
-);
 
 const SectionSubtitle = styled.p`
   font-size: 1.2rem;

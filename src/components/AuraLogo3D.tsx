@@ -23,6 +23,25 @@ const buttonFadeIn = keyframes`
   to { opacity: 1; transform: translateY(0); }
 `;
 
+const gradientShift = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const glowPulse = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(76, 194, 233, 0.4),
+                0 0 40px rgba(156, 67, 254, 0.3),
+                0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(76, 194, 233, 0.6),
+                0 0 60px rgba(156, 67, 254, 0.5),
+                0 6px 30px rgba(0, 0, 0, 0.3);
+  }
+`;
+
 const AuraContainer = styled.div`
   position: relative;
   width: 600px;
@@ -93,36 +112,69 @@ const Subtitle = styled.div`
 
 const LogoButton = styled.a`
   display: inline-block;
+  position: relative;
   margin-top: 18px;
-  background: linear-gradient(90deg, #4CC2E9 0%, #9C43FE 100%);
+  background: linear-gradient(270deg, #4CC2E9, #9C43FE, #4CC2E9, #9C43FE);
+  background-size: 400% 400%;
   color: #fff;
   font-weight: 700;
   font-size: 0.98rem;
-  padding: 10px 32px;
-  border-radius: 24px;
+  padding: 12px 36px;
+  border-radius: 50px;
   text-decoration: none;
-  box-shadow: none;
-  transition: transform 0.16s, background 0.3s, box-shadow 0.2s;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   letter-spacing: 0.08em;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   outline: none;
   z-index: 5;
-  animation: ${buttonFadeIn} 1.2s cubic-bezier(.4,0,.2,1) 1s both, ${buttonFloat} 4.2s ease-in-out infinite;
-  &:hover {
-    transform: translateY(-2px) scale(1.04);
-    background: linear-gradient(90deg, #9C43FE 0%, #4CC2E9 100%);
-    box-shadow: 0 4px 24px 0 rgba(76,194,233,0.3);
+  animation:
+    ${buttonFadeIn} 1.2s cubic-bezier(.4,0,.2,1) 1s both,
+    ${buttonFloat} 4.2s ease-in-out infinite,
+    ${gradientShift} 8s ease infinite,
+    ${glowPulse} 3s ease-in-out infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    padding: 2px;
+    background: linear-gradient(270deg, #4CC2E9, #9C43FE, #4CC2E9);
+    background-size: 400% 400%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: ${gradientShift} 8s ease infinite;
   }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &:active {
+    transform: translateY(-2px) scale(1.02);
+  }
+
   margin-bottom: 0;
 
   @media (max-width: 900px) {
     font-size: 0.88rem;
-    padding: 8px 22px;
+    padding: 10px 28px;
   }
   @media (max-width: 600px) {
     font-size: 0.78rem;
-    padding: 7px 14px;
+    padding: 8px 20px;
   }
 `;
 

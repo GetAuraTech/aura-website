@@ -4,6 +4,9 @@ import AuraLogo3D from './AuraLogo3D';
 import Footer from './Footer';
 import { locales, LocaleKey } from '../locales';
 import { Link, useLocation } from 'react-router-dom';
+import Logo from './Logo';
+import Orb from './Orb';
+import PillNav from './PillNav';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -16,68 +19,37 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', sans-serif;
     margin: 0;
-    background: linear-gradient(135deg, #070a13 0%, #101326 100%);
+    background: #000000;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 `;
 
 const headerFadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(-24px);
+    transform: translateX(-50%) translateY(-24px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
 `;
 
 const HeaderBar = styled.header`
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  width: 70vw;
-  max-width: 900px;
-  min-width: 0;
-  margin: 0 auto;
-  padding: 1.2rem 0;
-  background: transparent;
-  display: flex;
-  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  transform: translateY(0);
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 1.2rem 0;
   animation: ${headerFadeIn} 0.7s cubic-bezier(0.4,0,0.2,1);
-  &.scrolled {
-    padding: 0.8rem 0;
-    background: rgba(10, 37, 64, 0.75);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
+
   @media (max-width: 900px) {
-    width: 96vw;
-    max-width: 100vw;
-    margin: 0 auto;
-    padding: 0.8rem 12px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
+    padding: 0.8rem 0;
   }
   @media (max-width: 600px) {
-    width: 99vw;
-    max-width: 100vw;
-    margin: 0 auto;
-    padding: 0.5rem 8px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
+    padding: 0.5rem 0;
   }
 `;
 
@@ -96,18 +68,6 @@ const HeaderLeft = styled.div`
   }
 `;
 
-const HeaderRight = styled.div`
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
-  @media (max-width: 900px) {
-    flex: none;
-  }
-  @media (max-width: 600px) {
-    flex: none;
-  }
-`;
-
 const HeaderCenter = styled.div`
   flex: 1 1 auto;
   @media (max-width: 900px) {
@@ -118,19 +78,15 @@ const HeaderCenter = styled.div`
   }
 `;
 
-const Logo = styled(Link)`
-  color: #f8f9fa;
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-decoration: none;
-  background: linear-gradient(to right, #00c9b1, #6a67ce);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  &:hover {
-    text-shadow: 0 0 15px rgba(106, 103, 206, 0.5);
-    transform: scale(1.05);
+const HeaderRight = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  @media (max-width: 900px) {
+    flex: none;
+  }
+  @media (max-width: 600px) {
+    flex: none;
   }
 `;
 
@@ -325,12 +281,276 @@ const LangFlag = styled.img`
   }
 `;
 
+const HeroSection = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+`;
+
+const OrbBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+`;
+
 const Centered = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
+  z-index: 1;
+`;
+
+const MainContent = styled.div`
+  position: relative;
+  width: 100%;
+  background: #000000;
+  z-index: 1;
+`;
+
+const ContentSection = styled.section`
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 40px;
+  @media (max-width: 900px) {
+    padding: 80px 30px;
+  }
+  @media (max-width: 600px) {
+    padding: 60px 20px;
+  }
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  @media (max-width: 900px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
+`;
+
+const SectionSubtitle = styled.p`
+  font-size: 1.2rem;
+  text-align: center;
+  color: #b6d6ff;
+  margin-bottom: 60px;
+  @media (max-width: 900px) {
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+`;
+
+const FeaturesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+`;
+
+const FeatureCard = styled.div`
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 30px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  backdrop-filter: blur(10px);
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 201, 177, 0.5);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 201, 177, 0.2);
+  }
+  @media (max-width: 600px) {
+    padding: 30px 20px;
+  }
+`;
+
+const FeatureTitle = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #00c9b1;
+  margin-bottom: 1rem;
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+  }
+`;
+
+const FeatureDescription = styled.p`
+  font-size: 1rem;
+  color: #b6d6ff;
+  line-height: 1.6;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+  }
+`;
+
+const BenefitsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+`;
+
+const BenefitCard = styled.div`
+  text-align: center;
+  padding: 30px;
+  background: rgba(106, 103, 206, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(106, 103, 206, 0.3);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  &:hover {
+    transform: scale(1.05);
+    background: rgba(106, 103, 206, 0.15);
+    border-color: rgba(106, 103, 206, 0.5);
+  }
+`;
+
+const BenefitValue = styled.div`
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
+`;
+
+const BenefitLabel = styled.h4`
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f8f9fa;
+  margin-bottom: 0.5rem;
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+  }
+`;
+
+const BenefitDescription = styled.p`
+  font-size: 1rem;
+  color: #b6d6ff;
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+  }
+`;
+
+const StepsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const StepCard = styled.div`
+  position: relative;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(0, 201, 177, 0.4);
+  }
+`;
+
+const StepNumber = styled.div`
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(0, 201, 177, 0.3);
+  margin-bottom: 1rem;
+`;
+
+const StepTitle = styled.h4`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #00c9b1;
+  margin-bottom: 1rem;
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+  }
+`;
+
+const StepDescription = styled.p`
+  font-size: 1rem;
+  color: #b6d6ff;
+  line-height: 1.6;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+  }
+`;
+
+const CTASection = styled(ContentSection)`
+  text-align: center;
+  background: linear-gradient(135deg, rgba(0, 201, 177, 0.1) 0%, rgba(106, 103, 206, 0.1) 100%);
+  border-radius: 30px;
+  border: 1px solid rgba(0, 201, 177, 0.2);
+  margin-bottom: 100px;
+`;
+
+const CTAButton = styled.a`
+  display: inline-block;
+  padding: 18px 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #060010;
+  background: linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 10px 30px rgba(0, 201, 177, 0.3);
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 201, 177, 0.5);
+  }
+  @media (max-width: 600px) {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+  }
 `;
 
 const LANGS = [
@@ -380,37 +600,95 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
 
   return (
     <>
-      <HeaderBar id="header" className={scrolled ? 'scrolled' : ''}>
-        <HeaderLeft>
-          <NavLinks style={{gap: '2.2rem'}}>
-            <NavLink to="/" $active={location.pathname === '/'}>{language === 'ru' ? 'Главная' : 'Main'}</NavLink>
-            <NavLink to="/about" $active={location.pathname === '/about'}>{language === 'ru' ? 'О проекте' : 'About'}</NavLink>
-            <NavA href="mailto:hello@getaura.tech">{messages.contacts}</NavA>
-          </NavLinks>
-        </HeaderLeft>
-        <HeaderCenter />
-        <HeaderRight>
-          <LangSwitcher ref={langSwitcherRef}>
-            <LangBtn onClick={() => setLangMenu(v => !v)}>
-              <LangFlag src={currentLang.flag} alt={currentLang.label} />
-              {currentLang.label}
-            </LangBtn>
-            <LangOptions style={{ opacity: langMenu ? 1 : 0, visibility: langMenu ? 'visible' : 'hidden', pointerEvents: langMenu ? 'auto' : 'none' }}>
-              {LANGS.filter(l => l.code !== language).map(l => (
-                <LangOption key={l.code} onClick={() => { onLanguageChange(l.code as LocaleKey); setLangMenu(false); }}>
-                  <LangFlag src={l.flag} alt={l.label} />
-                  {l.label}
-                </LangOption>
-              ))}
-            </LangOptions>
-          </LangSwitcher>
-        </HeaderRight>
+      <HeaderBar id="header">
+        <PillNav
+          logo="/aura-logo-static.svg"
+          logoAlt="AURA Logo"
+          items={[
+            { label: language === 'ru' ? 'Главная' : 'Main', href: '/' },
+            { label: language === 'ru' ? 'О проекте' : 'About', href: '/about' },
+            { label: messages.contacts, href: 'mailto:hello@getaura.tech' }
+          ]}
+          activeHref={location.pathname}
+          baseColor="#ffffff"
+          pillColor="#060010"
+          hoveredPillTextColor="#060010"
+          ease="power3.out"
+          initialLoadAnimation={false}
+        />
       </HeaderBar>
       <GlobalStyle />
-      <Centered>
-        <AuraLogo3D subtitle={messages.subtitle} subtitleButtonText={messages.subtitleButtonText} />
-      </Centered>
-      <Footer message={messages.footer} />
+
+      <HeroSection>
+        <OrbBackground>
+          <Orb
+            hoverIntensity={0.5}
+            rotateOnHover={true}
+            hue={0}
+            forceHoverState={false}
+          />
+        </OrbBackground>
+        <Centered>
+          <AuraLogo3D subtitle={messages.subtitle} subtitleButtonText={messages.subtitleButtonText} />
+        </Centered>
+      </HeroSection>
+
+      <MainContent>
+        {/* Features Section */}
+        <ContentSection>
+          <SectionTitle>{messages.featuresTitle}</SectionTitle>
+          <SectionSubtitle>{messages.featuresSubtitle}</SectionSubtitle>
+          <FeaturesGrid>
+            {messages.features.map((feature, index) => (
+              <FeatureCard key={index}>
+                <FeatureTitle>{feature.title}</FeatureTitle>
+                <FeatureDescription>{feature.description}</FeatureDescription>
+              </FeatureCard>
+            ))}
+          </FeaturesGrid>
+        </ContentSection>
+
+        {/* Benefits Section */}
+        <ContentSection>
+          <SectionTitle>{messages.benefitsTitle}</SectionTitle>
+          <SectionSubtitle>{messages.benefitsSubtitle}</SectionSubtitle>
+          <BenefitsGrid>
+            {messages.benefits.map((benefit, index) => (
+              <BenefitCard key={index}>
+                <BenefitValue>{benefit.value}</BenefitValue>
+                <BenefitLabel>{benefit.label}</BenefitLabel>
+                <BenefitDescription>{benefit.description}</BenefitDescription>
+              </BenefitCard>
+            ))}
+          </BenefitsGrid>
+        </ContentSection>
+
+        {/* How It Works Section */}
+        <ContentSection>
+          <SectionTitle>{messages.howItWorksTitle}</SectionTitle>
+          <SectionSubtitle>{messages.howItWorksSubtitle}</SectionSubtitle>
+          <StepsContainer>
+            {messages.steps.map((step, index) => (
+              <StepCard key={index}>
+                <StepNumber>{step.number}</StepNumber>
+                <StepTitle>{step.title}</StepTitle>
+                <StepDescription>{step.description}</StepDescription>
+              </StepCard>
+            ))}
+          </StepsContainer>
+        </ContentSection>
+
+        {/* CTA Section */}
+        <CTASection>
+          <SectionTitle>{messages.ctaTitle}</SectionTitle>
+          <SectionSubtitle>{messages.ctaSubtitle}</SectionSubtitle>
+          <CTAButton href="https://t.me/getaura_bot" target="_blank" rel="noopener noreferrer">
+            {messages.ctaButton}
+          </CTAButton>
+        </CTASection>
+
+        <Footer message={messages.footer} />
+      </MainContent>
     </>
   );
 };

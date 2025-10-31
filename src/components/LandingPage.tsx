@@ -7,7 +7,6 @@ import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import Orb from './Orb';
 import PillNav from './PillNav';
-import ScrollVelocity from './ScrollVelocity';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -322,21 +321,6 @@ const MainContent = styled.div`
   z-index: 1;
 `;
 
-const ScrollVelocitySection = styled.div`
-  position: relative;
-  width: 100%;
-  background: #000000;
-  padding: 40px 0;
-  z-index: 1;
-
-  .scroller {
-    background: linear-gradient(135deg, #4CC2E9 0%, #9C43FE 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-`;
-
 const ContentSection = styled.section`
   position: relative;
   z-index: 1;
@@ -649,13 +633,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ language, onLanguageChange })
           <AuraLogo3D subtitle={messages.subtitle} subtitleButtonText={messages.subtitleButtonText} />
         </Centered>
       </HeroSection>
-
-      <ScrollVelocitySection>
-        <ScrollVelocity
-          texts={['INTELLIGENT AUTOMATION', 'BUSINESS EFFICIENCY', 'AI-POWERED SOLUTIONS']}
-          velocity={100}
-        />
-      </ScrollVelocitySection>
 
       <MainContent>
         {/* Features Section */}

@@ -113,17 +113,17 @@ const Subtitle = styled.div`
 const LogoButton = styled.a`
   display: inline-block;
   position: relative;
-  margin-top: 18px;
+  margin-top: 24px;
   background: linear-gradient(270deg, #4CC2E9, #9C43FE, #4CC2E9, #9C43FE);
   background-size: 400% 400%;
   color: #fff;
   font-weight: 700;
-  font-size: 0.98rem;
-  padding: 12px 36px;
+  font-size: 1.15rem;
+  padding: 16px 48px;
   border-radius: 50px;
   text-decoration: none;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   border: 2px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   outline: none;
@@ -169,12 +169,12 @@ const LogoButton = styled.a`
   margin-bottom: 0;
 
   @media (max-width: 900px) {
-    font-size: 0.88rem;
-    padding: 10px 28px;
+    font-size: 1rem;
+    padding: 14px 40px;
   }
   @media (max-width: 600px) {
-    font-size: 0.78rem;
-    padding: 8px 20px;
+    font-size: 0.9rem;
+    padding: 12px 32px;
   }
 `;
 

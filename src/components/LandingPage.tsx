@@ -11,8 +11,9 @@ import PillNav from './PillNav';
 const GlobalStyle = createGlobalStyle`
   :root {
     --deep-blue: #0A2540;
-    --teal: #00C9B1;
-    --purple: #6A67CE;
+    --orb-purple: #9C43FE;
+    --orb-cyan: #4CC2E9;
+    --orb-dark-blue: #101499;
     --gold: #FFD700;
   }
 
@@ -121,7 +122,7 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
   }
   &:hover {
     opacity: 1;
-    color: #00c9b1;
+    color: #4CC2E9;
   }
   &::after {
     content: '';
@@ -130,7 +131,7 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
     left: 0;
     width: ${({ $active }) => ($active ? '100%' : '0')};
     height: 2px;
-    background: linear-gradient(to right, #00c9b1, #6a67ce);
+    background: linear-gradient(to right, #4CC2E9, #9C43FE);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   &:hover::after {
@@ -139,7 +140,7 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
   ${({ $active }) =>
     $active &&
     `
-      color: #00c9b1;
+      color: #4CC2E9;
       opacity: 1;
       font-weight: 700;
       &::after {
@@ -167,7 +168,7 @@ const NavA = styled.a`
   }
   &:hover {
     opacity: 1;
-    color: #00c9b1;
+    color: #4CC2E9;
   }
   &::after {
     content: '';
@@ -176,7 +177,7 @@ const NavA = styled.a`
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(to right, #00c9b1, #6a67ce);
+    background: linear-gradient(to right, #4CC2E9, #9C43FE);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   &:hover::after {
@@ -340,7 +341,7 @@ const SectionTitle = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%);
+  background: linear-gradient(135deg, #4CC2E9 0%, #9C43FE 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -389,9 +390,9 @@ const FeatureCard = styled.div`
   backdrop-filter: blur(10px);
   &:hover {
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(0, 201, 177, 0.5);
+    border-color: rgba(76, 194, 233, 0.5);
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 201, 177, 0.2);
+    box-shadow: 0 20px 40px rgba(76, 194, 233, 0.2);
   }
   @media (max-width: 600px) {
     padding: 30px 20px;
@@ -401,7 +402,7 @@ const FeatureCard = styled.div`
 const FeatureTitle = styled.h3`
   font-size: 1.5rem;
   font-weight: 600;
-  color: #00c9b1;
+  color: #4CC2E9;
   margin-bottom: 1rem;
   @media (max-width: 600px) {
     font-size: 1.3rem;
@@ -431,21 +432,21 @@ const BenefitsGrid = styled.div`
 const BenefitCard = styled.div`
   text-align: center;
   padding: 30px;
-  background: rgba(106, 103, 206, 0.1);
+  background: rgba(156, 67, 254, 0.1);
   border-radius: 20px;
-  border: 1px solid rgba(106, 103, 206, 0.3);
+  border: 1px solid rgba(156, 67, 254, 0.3);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   &:hover {
     transform: scale(1.05);
-    background: rgba(106, 103, 206, 0.15);
-    border-color: rgba(106, 103, 206, 0.5);
+    background: rgba(156, 67, 254, 0.15);
+    border-color: rgba(156, 67, 254, 0.5);
   }
 `;
 
 const BenefitValue = styled.div`
   font-size: 4rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%);
+  background: linear-gradient(135deg, #4CC2E9 0%, #9C43FE 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -495,21 +496,21 @@ const StepCard = styled.div`
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   &:hover {
     background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(0, 201, 177, 0.4);
+    border-color: rgba(76, 194, 233, 0.4);
   }
 `;
 
 const StepNumber = styled.div`
   font-size: 3rem;
   font-weight: 700;
-  color: rgba(0, 201, 177, 0.3);
+  color: rgba(76, 194, 233, 0.3);
   margin-bottom: 1rem;
 `;
 
 const StepTitle = styled.h4`
   font-size: 1.5rem;
   font-weight: 600;
-  color: #00c9b1;
+  color: #4CC2E9;
   margin-bottom: 1rem;
   @media (max-width: 600px) {
     font-size: 1.3rem;
@@ -527,9 +528,9 @@ const StepDescription = styled.p`
 
 const CTASection = styled(ContentSection)`
   text-align: center;
-  background: linear-gradient(135deg, rgba(0, 201, 177, 0.1) 0%, rgba(106, 103, 206, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(76, 194, 233, 0.1) 0%, rgba(156, 67, 254, 0.1) 100%);
   border-radius: 30px;
-  border: 1px solid rgba(0, 201, 177, 0.2);
+  border: 1px solid rgba(76, 194, 233, 0.2);
 `;
 
 const CTAButton = styled.a`
@@ -538,14 +539,14 @@ const CTAButton = styled.a`
   font-size: 1.2rem;
   font-weight: 600;
   color: #060010;
-  background: linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%);
+  background: linear-gradient(135deg, #4CC2E9 0%, #9C43FE 100%);
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 10px 30px rgba(0, 201, 177, 0.3);
+  box-shadow: 0 10px 30px rgba(76, 194, 233, 0.3);
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 201, 177, 0.5);
+    box-shadow: 0 15px 40px rgba(76, 194, 233, 0.5);
   }
   @media (max-width: 600px) {
     padding: 15px 40px;

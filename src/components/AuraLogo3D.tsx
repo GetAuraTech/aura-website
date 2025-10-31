@@ -48,11 +48,11 @@ const LogoMain = styled.div`
   position: relative;
   font-size: 120px;
   font-weight: 700;
-  background: linear-gradient(135deg, #00c9b1 0%, #6a67ce 100%);
+  background: linear-gradient(135deg, #4CC2E9 0%, #9C43FE 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(106, 103, 206, 0.4);
+  text-shadow: 0 0 30px rgba(156, 67, 254, 0.4);
   z-index: 3;
   letter-spacing: 5px;
   animation: ${float} 3s infinite ease-in-out;
@@ -94,7 +94,7 @@ const Subtitle = styled.div`
 const LogoButton = styled.a`
   display: inline-block;
   margin-top: 18px;
-  background: linear-gradient(90deg, #0096ff 0%, #6a67ce 100%);
+  background: linear-gradient(90deg, #4CC2E9 0%, #9C43FE 100%);
   color: #fff;
   font-weight: 700;
   font-size: 0.98rem;
@@ -111,8 +111,8 @@ const LogoButton = styled.a`
   animation: ${buttonFadeIn} 1.2s cubic-bezier(.4,0,.2,1) 1s both, ${buttonFloat} 4.2s ease-in-out infinite;
   &:hover {
     transform: translateY(-2px) scale(1.04);
-    background: linear-gradient(90deg, #6a67ce 0%, #0096ff 100%);
-    box-shadow: 0 4px 24px 0 rgba(0,150,255,0.18);
+    background: linear-gradient(90deg, #9C43FE 0%, #4CC2E9 100%);
+    box-shadow: 0 4px 24px 0 rgba(76,194,233,0.3);
   }
   margin-bottom: 0;
 
